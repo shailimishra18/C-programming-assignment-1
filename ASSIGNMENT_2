@@ -1,0 +1,103 @@
+include <stdio.h>
+#include <string.h>  // For string comparison
+
+/* 
+1. STRUCTURES:
+   Structures are user-defined data types in C 
+   that allow storing multiple data items of different types together.
+*/
+struct Student {
+    int rollno;
+    char name[20];
+    float marks;
+};
+
+int main() {
+
+    /* --- Q1: Example of structure usage --- */
+    struct Student s1 = {1, "Shaili", 88.5};
+    struct Student s2 = {2, "Riya", 79.3};
+
+    printf("Q1 Output:\n");
+    printf("Student 1: Roll=%d, Name=%s, Marks=%.1f\n", s1.rollno, s1.name, s1.marks);
+    printf("Student 2: Roll=%d, Name=%s, Marks=%.1f\n\n", s2.rollno, s2.name, s2.marks);
+    // Output:
+    // Student 1: Roll=1, Name=Shaili, Marks=88.5
+    // Student 2: Roll=2, Name=Riya, Marks=79.3
+
+
+    /* 
+    2. ARRAY AND POINTERS ARRAY:
+       - Array: Collection of similar data types.
+       - Array of Pointers: Collection of addresses pointing to data.
+    */
+    printf("Q2 Output:\n");
+    int arr[3] = {10, 20, 30};
+    int *ptr[3];  // Array of pointers
+
+    for (int i = 0; i < 3; i++)
+        ptr[i] = &arr[i]; // Assign address of each element
+
+    for (int i = 0; i < 3; i++)
+        printf("Value at ptr[%d] = %d\n", i, *ptr[i]);
+    // Output:
+    // Value at ptr[0] = 10
+    // Value at ptr[1] = 20
+    // Value at ptr[2] = 30
+    printf("\n");. Compare two structure variables using comparison operators (= and !=)?
+3. We cannot directly compare structures using == or != in C.
+Instead, we compare individual members.
+Example Code:
+
+#include <stdio.h>
+#include <string.h>
+
+struct Student {
+    int roll;
+    char name[20];
+};
+
+int main() {
+    struct Student s1 = {1, "Shaili"};
+    struct Student s2 = {2, "Riya"};
+
+    if(s1.roll == s2.roll && strcmp(s1.name, s2.name) == 0)
+        printf("Structures are Equal\n");
+    else
+        printf("Structures are Not Equal\n");
+
+    return 0;
+}
+OUTPUT:
+Structures are Not Equal
+
+Q4. Perform Arithmetic Operations on Structures?
+4. We can perform arithmetic on numeric members of a structure, not on the structure as a whole.
+Example Code:
+
+#include <stdio.h>
+
+struct Complex {
+    float real;
+    float imag;
+};
+
+int main() {
+    struct Complex c1 = {3.2, 4.5};
+    struct Complex c2 = {1.2, 2.5};
+    struct Complex sum, diff;
+
+    sum.real = c1.real + c2.real;
+    sum.imag = c1.imag + c2.imag;
+
+    diff.real = c1.real - c2.real;
+    diff.imag = c1.imag - c2.imag;
+
+    printf("Sum = %.1f + %.1fi\n", sum.real, sum.imag);
+    printf("Difference = %.1f + %.1fi\n", diff.real, diff.imag);
+
+    return 0;
+}
+OUTPUT:
+Sum = 4.4 + 7.0i
+Difference = 2.0 + 2.0i
